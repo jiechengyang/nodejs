@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>index</title>
+    <!-- 删除<style>和<link>的type="text/css" -->
+    <link rel="stylesheet" href="http://www.test.com/index.css" type="text/css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="../css/index.css?rev=@@hash"/>
+    <script src="../js/index.js?rev=@@hash"></script>
+    <!-- 压缩页面css -->
+    <style type="text/css">
+        .test1 { background-color: red; }
+        .test2 { background-color: blue; }
+        .test3 { background-color: black; }
+    </style>
+    <!-- 删除<script>的type="text/javascript" -->
+    <script type="text/javascript">
+        //压缩页面JavaScript
+        (function () {
+            console.log('test');
+        })();
+    </script>
+</head>
+<body>
+    <input type="checkbox" checked="true"/><!-- 省略布尔属性的值 -->
+    <input type="checkbox" id=""/><!-- 删除所有空格作属性值 -->
+</body>
+</html>
