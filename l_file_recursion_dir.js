@@ -18,14 +18,16 @@ function readDirctory(path, deep, pid)
 {
 	 var files = fs.readdirSync(path);
      files.forEach((file) => {
-		 var stats = fs.statSync(path + "/" + file);
-	        if(stats.isDirectory()){  
-	            console.log("dir: "+file)  
-	            readDirctory(path+"/"+file);  
-	        }else{  
-	            console.log("file: "+file)  
-	        }     
-     })
+		var stats = fs.statSync(path + "/" + file);
+		var arr = [];
+		arr = {'id': index++, 'pid': pid, 'name': file}; 
+		if (stats.isDirectory()) {  
+			readDirctory(path + '/' + file, index, index-1); 
+		} 
+		fileList.push(arr);
+		
+     });
+    // 异步递归遍历目录
 	// fs.readdir(path, function(err, files) {
 	//    if (err) {
 	//        return console.error(err);
@@ -40,15 +42,32 @@ function readDirctory(path, deep, pid)
 
 	// 		if (stats.isDirectory()) {
 	// 			//console.log(repeat("\t", deep) + '名称:' + path + '/' + file +'-|-类型:文件夹' + '-|-创建时间:' + dateformat(stats.ctimeMs, 'yyyy-mm-dd HH:MM:ss') + '-|-修改时间:' + dateformat(stats.mtimeMs, 'yyyy-mm-dd, HH:MM:ss') + '-|-大小:'); 
-	// 			readDirctory(path + '/' + file, ++deep, deep);
 	// 		} else {
 	// 			var fileExt = getFileExt(file);
 	// 			//console.log(repeat("\t", deep) + '名称:' + path + '/' + file +'-|-类型:'+ fileExt.toUpperCase() + '-|-创建时间:' + dateformat(stats.ctimeMs, 'yyyy-mm-dd HH:MM:ss') + '-|-修改时间:' + dateformat(stats.mtimeMs, 'yyyy-mm-dd, HH:MM:ss') + '-|-大小:' + filesizeFormat(stats.size));   
 	// 		} 
-	// 		var arr = {'id': index++, 'pid': pid, 'name': file};
 	//      });
 	//    });
 	// });
+}
+
+/**
+ * treeList
+ * @param arr 无极数组,
+ * @param pid 上级id
+ * @param lv 等级
+ * @description 打印树形结构
+*/
+function treeList(tree, pid, lv) 
+{
+	for (var p in tree) {
+		if (tree[p].pid == pid) {
+			tree[p].lv = lv;
+			data = tree[p];
+			console.log(repeat("\t", lv+1) + data.name);
+			treeList(tree, tree[p].id, lv+1);
+		}
+	}
 }
 
 /**
@@ -143,5 +162,7 @@ function numberFormat(number,bit,sign,gapnum)
 }
 
 readDirctory(path, deep, pid);
-console.log(fileList);
+// console.log(fileList);
+treeList(fileList, 0, 0);
+console.log(data);
 

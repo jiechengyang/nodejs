@@ -1,0 +1,19 @@
+.index1 {
+  background-color: red;
+}
+.index2 {
+  background-color: black;
+}
+.index3 {
+  background-color: blue;
+}
+.test1 {
+    transform: rotate(45deg);
+}
+.test2 {
+    animation-name: toradius;
+    animation-duration: 5s;
+    animation-timing-function: ease;
+    animation-iteration-count: 5;
+    animation-delay: .1s;
+}
