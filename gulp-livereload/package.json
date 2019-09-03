@@ -1,0 +1,21 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "This is for study gulp project !",
+  "homepage": "http://www.ydcss.com",
+  "repository": {
+    "type": "git",
+    "url": "https://git.oschina.net/xxxx"
+  },
+  "author": {
+    "name": "surging",
+    "email": "surging2@qq.com"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-less": "^3.0.5",
+    "gulp-livereload": "^3.8.1",
+    "livereload": "^0.4.0"
+  }
+}
